@@ -1,0 +1,47 @@
+{
+    "head" : 
+    { "name" : "head",
+        "items" :
+    [
+        { "url" : "/head/1.png", "x" : 0, "y" : 0, "width": 184, "height" : 214 },
+        { "url" : "/head/2.png", "x" : 0, "y" : 0, "width": 200, "height" : 233 },
+        { "url" : "/head/3.png", "x" : 0, "y" : 0, "width": 200, "height" : 243 },
+        { "url" : "/head/4.png", "x" : 0, "y" : 0, "width": 200, "height" : 206 },
+        { "url" : "/head/5.png", "x" : 0, "y" : 0, "width": 200, "height" : 267 }
+    ]},
+    "eyeBrows": { "name" : "eyeBrows",
+        "items" : [
+        { "left" : "/brows/1.png","right":"/brows/11.png","x" : 0,"y" : 0,"width": 50,"height" : 17 ,"distance": 75 },
+        { "left" : "/brows/2.png","right":"/brows/22.png","x" : 0,"y" : 0,"width": 144,"height" : 50 ,"distance": 75 },
+        { "left" : "/brows/3.png","right":"/brows/33.png","x" : 0,"y" : 0,"width": 196,"height" : 50 ,"distance": 75 },
+        { "left" : "/brows/4.png","right":"/brows/44.png","x" : 0,"y" : 0,"width": 153,"height" : 50 ,"distance": 75 },
+        { "left" : "/brows/5.png","right":"/brows/55.png","x" : 0,"y" : 0,"width": 148,"height" : 50 ,"distance": 75 },
+        { "left" : "/brows/6.png","right":"/brows/66.png","x" : 0,"y" : 0,"width": 148,"height" : 50 ,"distance": 75 },
+        { "left" : "/brows/7.png","right":"/brows/77.png","x" : 0,"y" : 0,"width": 163,"height" : 50 ,"distance": 75 }
+    ]}
+    ,
+    "eyes" :  { "name" : "eyes",
+        "items" :[
+        { "left" : "/eyes/1.png", "right":"/eyes/12.png","x" : 0,"y" : 0,"width": 80,"height" : 50 ,"distance": 75 },
+        { "left" : "/eyes/2.png", "right":"/eyes/22.png","x" : 0,"y" : 0,"width": 64,"height" : 50 ,"distance": 75 },
+        { "left" : "/eyes/3.png", "right":"/eyes/33.png","x" : 0,"y" : 0,"width": 94,"height" : 50 ,"distance": 94 }
+    ]},
+    "nose": { "name" : "nose",
+        "items" : [
+        { "url" : "/nose/1.png", "x" : 0, "y" : 0, "width": 70, "height" : 76 },
+        { "url" : "/nose/2.png", "x" : 0, "y" : 0, "width": 70, "height" : 76 },
+        { "url" : "/nose/3.png", "x" : 0, "y" : 0, "width": 70, "height" : 76 },
+        { "url" : "/nose/4.png", "x" : 0, "y" : 0, "width": 70, "height" : 76 },
+        { "url" : "/nose/5.png", "x" : 0, "y" : 0, "width": 70, "height" : 76 },
+        { "url" : "/nose/6.png", "x" : 0, "y" : 0, "width": 70, "height" : 76 },
+        { "url" : "/nose/7.png", "x" : 0, "y" : 0, "width": 70, "height" : 76 },
+        { "url" : "/nose/8.png", "x" : 0, "y" : 0, "width": 70, "height" : 76 }
+    ]},
+    "mouth" : { "name" : "mouth",
+        "items" : [
+        { "url" : "/mouth/1.png", "x" : 0, "y" : 0, "width": 111, "height" : 92 },
+        { "url" : "/mouth/2.png", "x" : 0, "y" : 0, "width": 133, "height" : 76 },
+        { "url" : "/mouth/3.png", "x" : 0, "y" : 0, "width": 133, "height" : 76 },
+        { "url" : "/mouth/4.png", "x" : 0, "y" : 0, "width": 133, "height" : 76 }
+    ]}
+}

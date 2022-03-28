@@ -1,0 +1,213 @@
+<a routerLink="/"  class="btn btn-info mt-4">назад</a>
+<style>html{width: 100%;}</style>
+<div class="row mt-2" align="center">
+    <div class="col-sm-12 col-lg-4" align="center">
+        <canvas width="320"style="border: 1px solid #DDD;" height="300" (touchstart)="ontouch($event)" (touchmove)="touchmove($event)" (mousedown)="canvasMngStart($event)" (mousemove)="canvasMngMove($event)" (mouseup)="canvasMngEnd()" #sketch></canvas>
+        <a [href]="imageDownload.src" download="canvasImage" class="btn btn-info">скачать</a>
+    </div>
+    
+    <div class="col-sm-12 col-lg-8" align="center">
+        <!-- тут будут всякие кнопки -->
+        <div class="col-sm-12 mb-2">
+            <select [(ngModel)]="select" class="form-control">
+                <option value="head">Голова</option>
+                <option value="brows">Брови</option>
+                <option value="eyes">Глаза</option>
+                <option value="nose">Нос</option>
+                <option value="mouth">Рот</option>
+            </select>
+        </div>
+        <table class="table" *ngIf="(select=='head')" style="width: 100%;">
+            <tr>
+                <td style="width: 130px;">
+                    <input type="checkbox" name="onHead" id="onHead" [(ngModel)]="on.head"> 
+                    Голова {{head+1}}</td>
+                <td>Размер:</td>
+                 <td>положение: {{imgs.head.x}} : {{imgs.head.y}} </td>
+            </tr>
+            <tr>
+                <td style="width: 130px;" >
+                    <button class="btn btn-info" (click)="nextHead(-1)"><</button>
+                    <button class="btn btn-info ml-1" (click)="nextHead(1)">></button>
+                </td>
+                <td style="width: 130px;">
+                    <button class="btn btn-info" (click)="sizeHead(-1)" (mousedown)="setInt('head-size',-1)" (touchstart)="setInt('head-size',-1)" (touchend)="destSetInt()" (mouseup)="destSetInt()">-</button>
+                    <button class="btn btn-info ml-1" (click)="sizeHead(1)" (mousedown)="setInt('head-size',1)" (mouseup)="destSetInt()"  (touchstart)="setInt('head-size',1)" (touchend)="destSetInt()">+</button>
+                    
+                </td>
+                <td >
+                    <table >
+                        <tr>
+                            <td><button class="btn btn-info" (click)="reCoordHead(-1)" (mousedown)="setInt('head-x',-1)" (touchstart)="setInt('head-x',-1)" (touchend)="destSetInt()" (mouseup)="destSetInt()">←</button></td>
+                            <td>
+                                <button class="btn btn-info" (click)="reCoordHead(1)" (mousedown)="setInt('head-x',1)" (touchstart)="setInt('head-x',1)" (touchend)="destSetInt()" (mouseup)="destSetInt()">→</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><button class="btn btn-info" (click)="reCoordHead(0,-1)" (mousedown)="setInt('head-y',-1)" (touchstart)="setInt('head-y',-1)" (touchend)="destSetInt()" (mouseup)="destSetInt()">↑</button></td>
+                            <td>
+                                <button class="btn btn-info" (click)="reCoordHead(0,1)" (mousedown)="setInt('head-y',1)" (touchstart)="setInt('head-y',1)" (touchend)="destSetInt()" (mouseup)="destSetInt()">↓</button>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+        <!-- EYES -->
+        <table class="table" *ngIf="select=='eyes'" style="width: 100%;">
+            <tr>
+                <td>
+                    <input type="checkbox" name="onHead" id="onHead" [(ngModel)]="on.eyes">  
+                    глаза {{eyes+1}}
+                </td>
+                <td>Размер глаз</td>
+                <td>положение: <br>x:{{imgs.eyes.l.x}} - y:{{imgs.eyes.l.y}}</td>
+                <td>расстояние между: {{imgs.eyes.distance}}</td>
+            </tr>
+            <tr>
+                <td>
+                    <button class="btn btn-info" (click)="nextEyes(-1)">←</button>
+                    <button class="btn btn-info ml-1" (click)="nextEyes(1)">→</button>
+                </td>
+                <td>
+                    <button class="btn btn-info" (click)="sizeEyes(-1)" (touchstart)="setInt('eyes-size',-1)" (touchend)="destSetInt()" (mousedown)="setInt('eyes-size',-1)" (mouseup)="destSetInt()" >-</button>
+                    <button class="btn btn-info ml-1" (click)="sizeEyes(1)" (touchstart)="setInt('eyes-size',1)" (touchend)="destSetInt()" (mousedown)="setInt('eyes-size',1)" (mouseup)="destSetInt()">+</button>
+                </td>
+                <td>
+                    <table >
+                        <tr>
+                            <td>
+                                <button class="btn btn-info" (click)="reCoordEyes(-1)" (touchstart)="setInt('eyes-x',-1)" (touchend)="destSetInt()" (mousedown)="setInt('eyes-x',-1)" (mouseup)="destSetInt()">←</button>
+                            </td>
+                            <td>
+                                <button class="btn btn-info" (click)="reCoordEyes(1)" (touchstart)="setInt('eyes-x',1)" (touchend)="destSetInt()" (mousedown)="setInt('eyes-x',1)" (mouseup)="destSetInt()">→</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><button class="btn btn-info" (click)="reCoordEyes(0,-1)" (touchstart)="setInt('eyes-y',-1)" (touchend)="destSetInt()" (mousedown)="setInt('eyes-y',-1)" (mouseup)="destSetInt()">↑</button></td>
+                            <td>
+                                <button class="btn btn-info" (click)="reCoordEyes(0,1)" (touchstart)="setInt('eyes-y',1)" (touchend)="destSetInt()" (mousedown)="setInt('eyes-y',1)" (mouseup)="destSetInt()">↓</button>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td>
+                    <button class="btn btn-info" (click)="distanceEyes(-1)" (touchstart)="setInt('eyes-distance',-1)" (touchend)="destSetInt()" (mousedown)="setInt('eyes-distance',-1)" (mouseup)="destSetInt()">→←</button>
+                    <button class="btn btn-info ml-1" (click)="distanceEyes(1)" (touchstart)="setInt('eyes-distance',1)" (touchend)="destSetInt()" (mousedown)="setInt('eyes-distance',1)" (mouseup)="destSetInt()">↔</button>
+                </td>
+            </tr>
+        </table>
+        <!-- NOOOOOOOOOOOOOOOOOOOOOOOOOSE -->
+        <table class="table" *ngIf="select=='nose'" style="width: 100%;">
+            <tr>
+                <td>
+                    <input type="checkbox" name="onHead" id="onHead" [(ngModel)]="on.nose"> 
+                    Нос {{nose+1}}</td>
+                <td>Размер носа</td>
+                <td>положение: <br> x:{{imgs.nose.x}} : y:{{imgs.nose.y}}</td>
+            </tr>
+            <tr>
+                <td>
+                    <button class="btn btn-info" (click)="nextNose(-1)"><</button>
+                    <button class="btn btn-info ml-1" (click)="nextNose(1)">></button>
+                </td>
+                <td>
+                    <button class="btn btn-info" (click)="sizeNose(-1)" (touchstart)="setInt('nose-size',-1)" (touchend)="destSetInt()" (mousedown)="setInt('nose-size',-1)" (mouseup)="destSetInt()">-</button>
+                    <button class="btn btn-info ml-1" (click)="sizeNose(1)" (touchstart)="setInt('nose-size',1)" (touchend)="destSetInt()" (mousedown)="setInt('nose-size',1)" (mouseup)="destSetInt()">+</button>
+                </td>
+                <td>
+                    <table >
+                        <tr>
+                            <td><button class="btn btn-info" (click)="reCoordNose(-1)" (touchstart)="setInt('nose-x',-1)" (touchend)="destSetInt()" (mousedown)="setInt('nose-x',-1)" (mouseup)="destSetInt()">←</button></td>
+                            <td>
+                                <button class="btn btn-info" (click)="reCoordNose(1)" (touchstart)="setInt('nose-x',1)" (touchend)="destSetInt()" (mousedown)="setInt('nose-x',1)" (mouseup)="destSetInt()">→</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><button class="btn btn-info" (click)="reCoordNose(0,-1)" (touchstart)="setInt('nose-y',-1)" (touchend)="destSetInt()"  (mousedown)="setInt('nose-y',-1)" (mouseup)="destSetInt()">↑</button></td>
+                            <td>
+                                <button class="btn btn-info" (click)="reCoordNose(0,1)" (touchstart)="setInt('nose-y',1)" (touchend)="destSetInt()" (mousedown)="setInt('nose-y',1)" (mouseup)="destSetInt()">↓</button>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+        <!-- -- MOUTH MOUTH MOUTH MOUTH MOUTH -- -->
+        <table class="table" *ngIf="select=='mouth'" style="width: 100%;">
+            <tr>
+                <td>
+                    <input type="checkbox" name="onHead" id="onHead" [(ngModel)]="on.mouth"> 
+                    Рот {{mouth+1}}</td>
+                <td>Размер</td>
+                <td>положение: <br> x:{{imgs.mouth.x}} : y:{{imgs.mouth.y}}</td>
+            </tr>
+            <tr>
+                <td>
+                    <button class="btn btn-info" (click)="nextMouth(-1)"><</button>
+                    <button class="btn btn-info ml-1" (click)="nextMouth(1)">></button>
+                </td>
+                <td>
+                    <button class="btn btn-info" (click)="sizeMouth(-1)" (touchstart)="setInt('mouth-size',-1)" (touchend)="destSetInt()" (mousedown)="setInt('mouth-size',-1)" (mouseup)="destSetInt()">-</button>
+                    <button class="btn btn-info ml-1" (click)="sizeMouth(1)" (touchstart)="setInt('mouth-size',1)" (touchend)="destSetInt()" (mousedown)="setInt('mouth-size',1)" (mouseup)="destSetInt()">+</button>
+                </td>
+                <td>
+                    <table >
+                        <tr>
+                            <td><button class="btn btn-info" (click)="reCoordMouth(-1)" (touchstart)="setInt('mouth-x',-1)" (touchend)="destSetInt()" (mousedown)="setInt('mouth-x',-1)" (mouseup)="destSetInt()">←</button></td>
+                            <td>
+                                <button class="btn btn-info" (click)="reCoordMouth(1)" (touchstart)="setInt('mouth-x',1)" (touchend)="destSetInt()" (mousedown)="setInt('mouth-x',1)" (mouseup)="destSetInt()">→</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><button class="btn btn-info" (click)="reCoordMouth(0,-1)" (touchstart)="setInt('mouth-y',-1)" (touchend)="destSetInt()" (mousedown)="setInt('mouth-y',-1)" (mouseup)="destSetInt()">↑</button></td>
+                            <td>
+                                <button class="btn btn-info" (click)="reCoordMouth(0,1)" (touchstart)="setInt('mouth-y',1)" (touchend)="destSetInt()" (mousedown)="setInt('mouth-y',1)" (mouseup)="destSetInt()">↓</button>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+        <table class="table" *ngIf="select=='brows'" style="width: 100%;">
+            <tr>
+                <td>
+                    <input type="checkbox" name="onHead" id="onHead" [(ngModel)]="on.eyeBrows"> 
+                    брови {{eyeBrows+1}}</td>
+                <td>Размер </td>
+                <td>положение: <br>x:{{imgs.eyeBrows.l.x}} - y:{{imgs.eyeBrows.l.y}}</td>
+                <td>расстояние между: {{imgs.eyeBrows.distance}}</td>
+            </tr>
+            <tr>
+                <td>
+                    <button class="btn btn-info" (click)="nextEyeBrows(-1)"><</button>
+                    <button class="btn btn-info ml-1" (click)="nextEyeBrows(1)">></button>
+                </td>
+                <td>
+                    <button class="btn btn-info" (click)="sizeEyeBrows(-1)" (touchstart)="setInt('eyeBrows-size',-1)" (touchend)="destSetInt()" (mousedown)="setInt('eyeBrows-size',-1)" (mouseup)="destSetInt()">-</button>
+                    <button class="btn btn-info ml-1" (click)="sizeEyeBrows(1)" (touchstart)="setInt('eyeBrows-size',1)" (touchend)="destSetInt()" (mousedown)="setInt('eyeBrows-size',1)" (mouseup)="destSetInt()">+</button>
+                </td>
+                <td>
+                    <table >
+                        <tr>
+                            <td><button class="btn btn-info" (click)="reCoordEyeBrows(-1)" (touchstart)="setInt('eyeBrows-x',-1)" (touchend)="destSetInt()" (mousedown)="setInt('eyeBrows-x',-1)" (mouseup)="destSetInt()">←</button></td>
+                            <td>
+                                <button class="btn btn-info" (click)="reCoordEyeBrows(1)" (touchstart)="setInt('eyeBrows-x',1)" (touchend)="destSetInt()" (mousedown)="setInt('eyeBrows-x',1)" (mouseup)="destSetInt()">→</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><button class="btn btn-info" (click)="reCoordEyeBrows(0,-1)" (touchstart)="setInt('eyeBrows-y',-1)" (touchend)="destSetInt()" (mousedown)="setInt('eyeBrows-y',-1)" (mouseup)="destSetInt()">↑</button></td>
+                            <td>
+                                <button class="btn btn-info" (click)="reCoordEyeBrows(0,1)" (touchstart)="setInt('eyeBrows-y',1)" (touchend)="destSetInt()" (mousedown)="setInt('eyeBrows-y',1)" (mouseup)="destSetInt()">↓</button>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td>
+                    <button class="btn btn-info" (click)="distanceEyeBrows(-1)" (touchstart)="setInt('eyeBrows-distance',-1)" (touchend)="destSetInt()" (mousedown)="setInt('eyeBrows-distance',-1)" (mouseup)="destSetInt()">→←</button>
+                    <button class="btn btn-info ml-1" (click)="distanceEyeBrows(1)" (touchstart)="setInt('eyeBrows-distance',1)" (touchend)="destSetInt()" (mousedown)="setInt('eyeBrows-distance',1)" (mouseup)="destSetInt()">↔</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
